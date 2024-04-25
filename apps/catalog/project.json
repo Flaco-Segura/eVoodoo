@@ -3,6 +3,14 @@
   "sourceRoot": "apps/catalog/src",
   "projectType": "application",
   "targets": {
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "catalog:build",
+        "port": 4201
+      }
+    },
     "build": {
       "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
@@ -12,13 +20,13 @@
         "outputPath": "dist/apps/catalog",
         "index": "apps/catalog/src/index.html",
         "baseHref": "/",
-        "main": "apps/catalog/src/main.tsx",
+        "main": "apps/catalog/src/main.ts",
         "polyfills": "apps/catalog/src/polyfills.ts",
         "tsConfig": "apps/catalog/tsconfig.app.json",
         "assets": ["apps/catalog/src/favicon.ico", "apps/catalog/src/assets"],
         "styles": ["apps/catalog/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/catalog/webpack.config.js"
       },
       "configurations": {
         "development": {
@@ -44,12 +52,12 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/react:module-federation-dev-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "catalog:build",
         "hmr": true,
-        "port": 4200
+        "port": 4201
       },
       "configurations": {
         "development": {

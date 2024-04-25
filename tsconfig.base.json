@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ebuy/ui": ["libs/ui/src/index.ts"]
+      "@evoodoo/custom-hooks": ["libs/custom-hooks/src/index.ts"],
+      "@evoodoo/mocks": ["libs/mocks/src/index.ts"],
+      "@evoodoo/ui": ["libs/ui/src/index.ts"],
+      "@evoodoo/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

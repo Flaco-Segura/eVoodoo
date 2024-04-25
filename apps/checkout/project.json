@@ -3,6 +3,14 @@
   "sourceRoot": "apps/checkout/src",
   "projectType": "application",
   "targets": {
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "checkout:build",
+        "port": 4202
+      }
+    },
     "build": {
       "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
@@ -12,13 +20,13 @@
         "outputPath": "dist/apps/checkout",
         "index": "apps/checkout/src/index.html",
         "baseHref": "/",
-        "main": "apps/checkout/src/main.tsx",
+        "main": "apps/checkout/src/main.ts",
         "polyfills": "apps/checkout/src/polyfills.ts",
         "tsConfig": "apps/checkout/tsconfig.app.json",
         "assets": ["apps/checkout/src/favicon.ico", "apps/checkout/src/assets"],
         "styles": ["apps/checkout/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/checkout/webpack.config.js"
       },
       "configurations": {
         "development": {
@@ -44,12 +52,11 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/react:module-federation-dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "checkout:build",
-        "hmr": true,
-        "port": 4201
+        "buildTarget": "checkout:build:development",
+        "port": 4202
       },
       "configurations": {
         "development": {
